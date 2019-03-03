@@ -1,0 +1,64 @@
+﻿@html.extend('shared/layout', function(model) {
+	@html.block('body', function(model) {
+
+
+
+<div class="row">
+    <h2>Log in</h2>
+    
+        <form class="form-horizontal" role="form" action="/login" method="post">
+            <hr />
+            @if(model.message.length) {            
+            <ul class="text-danger">
+                <li>@model.message</li>
+            </ul>
+            }            
+            <div class="form-group">
+                <label for="LoginUserName" class="col-md-2 control-label">User name</label>
+                <div class="col-md-10">
+                    <input type="text" id="LoginUserName" class="form-control" name="username" placeholder="User name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="LoginPassword" class="col-md-2 control-label">Password</label>
+                <div class="col-md-10">
+                    <input type="password" id="LoginPassword" class="form-control" name="password" placeholder="Password" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">                    
+                        <input type="checkbox" id="LoginRememberMe"  name="rememberme" />
+                        <label for="LoginRememberMe">Remember me?</label>                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+            </div>
+            <p><a href="/register">Register</a> if you don't have a local account.</p>
+
+        </form>
+    
+    <!--<section class="col-md-4">
+        <h4>Use another service to login.</h4>
+        <hr />
+        <div data-bind="visible: loadingExternalLogin">Loading...</div>
+        <div data-bind="visible: !loadingExternalLogin()">
+            <div data-bind="visible: !hasExternalLogin()">
+                <p>
+                    There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
+                    for details on setting up this ASP.NET application to support logging in via external services.
+                </p>
+            </div>
+            <form class="form-horizontal" role="form" data-bind="visible: hasExternalLogin">
+                <p data-bind="foreach: externalLoginProviders">
+                    <button type="submit" class="btn btn-default" data-bind="text: name, attr: { title: 'Log in using your ' + name() + ' account' }, click: login"></button>
+                </p>
+            </form>
+        </div>
+    </section>-->
+</div>
+})
+
+})

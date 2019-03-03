@@ -1,0 +1,65 @@
+﻿@html.extend('shared/layout', function(model) {
+
+@html.block('body', function(model) {
+
+<div data-ng-app="notesMod" class="container-fluid">
+
+    <a href="/" class="btn btn-info">Back</a>
+    <div data-ng-controller="notesCtrl" class="container-fluid">
+
+        <div class="note container-fluid" data-ng-repeat="n in notes" data-ng-class="'note-'+n.color">
+            <div>{{n.note}}</div>
+            <div class="note-author">
+                <small>-{{n.author}}</small>
+            </div>
+        </div>
+        <hr />
+        <form role="form" class="row form-horizontal" name="myForm" data-ng-submit="save()">
+            <div class="form-group">
+                <div class="col-lg-5">
+                    <label class="control-label">Color</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5">
+                    <div class="btn-group">
+                        <button data-ng-model="newNote.color" type="button" class="btn btn-primary" btn-radio="'yellow'">Yellow</button>
+                        <button data-ng-model="newNote.color" type="button" class="btn btn-primary" btn-radio="'blue'">Blue</button>
+                        <button data-ng-model="newNote.color" type="button" class="btn btn-primary" btn-radio="'green'">Green</button>
+                        <button data-ng-model="newNote.color" type="button" class="btn btn-primary" btn-radio="'orange'">Orange</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-5">
+                    <label for="myFormAuthor">Author</label>
+                    <input data-ng-model="newNote.author" name="author" id="myFormAuthor" class="form-control" placeholder="Your Name" required maxlength="30"></input>
+                    <span data-ng-show="myForm.author.$error.required && myForm.author.$dirty" class="alert-danger">The Author is required</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5">
+                    <label for="myFormNote">Note</label>
+                    <textarea data-ng-model="newNote.note" cols="30" rows="2" name="note" id="myFormNote" class="form-control" placeholder="Your Note" required maxlength="120"></textarea>
+                    <span data-ng-show="myForm.note.$error.required && myForm.note.$dirty" class="alert-danger">The Note is required</span>
+                    <p data-ng-show="!myForm.note.$error.required && myForm.note.$dirty">You can type {{120 - newNote.note.length}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-5">
+                    <input data-ng-disabled="myForm.$invalid" type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+})
+
+@html.block('scripts', function(model) {
+<script src="/lib/socket.io-client/socket.io.js"></script>
+<script src="/js/angular/notesCtrl.js"></script>
+})
+})

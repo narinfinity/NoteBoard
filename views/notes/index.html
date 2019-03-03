@@ -1,0 +1,54 @@
+﻿@html.extend('shared/layout', function(model) {
+	@html.block('body', function(model) {
+<div class="row">
+    <p>This is block!</p>
+
+    @if(model.error){
+    <p class="text-error">Error occured: @model.error</p>
+    }
+    <table class="table-striped">
+        <tr class="row col-lg-12">
+            <th>
+                N
+            </th>
+            <th class="col-lg-3">
+                Note
+            </th>
+            <th class="col-lg-3">
+                Author
+            </th>
+            <th class="col-lg-3">
+                Color
+            </th>
+        </tr>
+        @model.notes.forEach(function(note, index){
+        <tr class="row col-lg-12">
+            <th>
+                @(index + 1).
+            </th>
+            <th class="col-lg-3">
+                @note.note
+            </th>
+            <th class="col-lg-3">
+                @note.author
+            </th>
+            <th class="col-lg-3">
+                @note.color
+            </th>
+        </tr>
+        })
+    </table>
+        @if(model.message.length){
+        <ul class="text-danger">
+            <li>@model.message</li>
+        </ul>
+        }
+        <form class="form-inline" action="/notes/@(model.categoryName)" method="post" role="form">
+            <input type="text" name="note" placeholder="note name" value="" class="form-control" />
+            <input type="text" name="author" placeholder="author name" value="" class="form-control" />
+            <input type="text" name="color" placeholder="color name" value="" class="form-control" />
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </form>
+    </div>
+    })
+    })

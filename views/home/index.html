@@ -1,0 +1,56 @@
+﻿@html.extend('shared/layout', function(model) {
+	@html.block('body', function(model) {
+<div class="row">
+    <p>This is block!</p>
+
+    @if(model.error){
+    <p class="text-error">Error occured: @model.error</p>
+    }
+    <div class="table-responsive">
+        <table class="table table-striped">
+
+            <thead>
+                <tr class="active">
+                    <th class="col-lg-1">
+                        N
+                    </th>
+                    <th class="col-lg-3">
+                        Name
+                    </th>
+                    <th class="col-lg-3">
+                        Count
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @model.categories.forEach(function(c, index){
+                <tr class="info">
+                    <td class="col-lg-1">
+                        @(index + 1).
+                    </td>
+                    <td class="col-lg-3">
+                        <a href="/notes/@(c.name)">@c.name</a>
+                    </td>
+                    <td class="col-lg-3">
+                        <span class="badge">@(c.notes ? c.notes.length : 0)</span>
+                    </td>
+                </tr>
+                })
+            </tbody>
+        </table>
+    </div>
+
+        @if(model.message.length){
+        <ul class="text-danger">
+            <li>@model.message</li>
+        </ul>
+        }
+        <form class="form-inline" action="/add" method="post" role="form">
+            <input type="text" name="categoryName" placeholder="category name" value="" class="form-control" />
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </form>
+   
+</div>
+    })
+
+    })

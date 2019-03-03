@@ -1,0 +1,11 @@
+﻿@html.extend('shared/layout', function(model) {
+	@html.block('body', function(model) {
+    <h1 class="text-danger">@(model.title ? model.title : 'Error')</h1>
+    @if(model.message){
+    <h2 class="text-danger">@(model.message).</h2>
+    } else {
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+    }
+    })
+    })
+
