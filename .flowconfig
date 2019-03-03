@@ -1,0 +1,46 @@
+[ignore]
+
+# Dev dependencies that don't need to be checked
+<PROJECT_ROOT>/node_modules/babel-core
+<PROJECT_ROOT>/node_modules/babel-cli
+<PROJECT_ROOT>/node_modules/babel-eslint
+<PROJECT_ROOT>/node_modules/babel-loader
+<PROJECT_ROOT>/node_modules/babel-plugin-.*
+<PROJECT_ROOT>/node_modules/babel-preset-.*
+<PROJECT_ROOT>/node_modules/babel-register
+<PROJECT_ROOT>/node_modules/eslint.*
+<PROJECT_ROOT>/node_modules/webpack.*
+
+# Libraries with annoying flow errors we can't fix
+# See https://github.com/facebook/flow/issues/869
+# If you get 'Required module not found', make sure there is a type definition or stub for it with `yarn run flow-typed`.
+<PROJECT_ROOT>/node_modules/draft-js
+<PROJECT_ROOT>/node_modules/polished
+<PROJECT_ROOT>/node_modules/material-ui
+
+[include]
+.
+
+[libs]
+./flow-typed
+
+[lints]
+all=error
+sketchy-null-bool=off
+sketchy-null-string=off
+
+
+[options]
+esproposal.decorators=ignore
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FixMe
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(3[0-9]\\|[1-2][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*\\(react_native_oss\\|react-native\\)[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(3[0-9]\\|1[0-9]\\|[1-2][0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*\\(react_native_oss\\|react-native\\)[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMeState
+
+server.max_workers=1

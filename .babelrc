@@ -1,0 +1,5 @@
+{
+    "presets": [ // yarn run babel src/ -- -d lib/
+        "flow"
+    ]
+}

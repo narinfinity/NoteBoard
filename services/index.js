@@ -9,14 +9,14 @@
             } else {
                 //test if data exists
                 db.categories
-                .count(function (err, count) {
+                .countDocuments(function (err, count) {
                     if (err) {
                         console.log("Failed to seed database: " + err);
                     } else {
                         if (count === 0) {
                             console.log("Seeding the database...");
                             seedData.categories.forEach(function (item, index) {
-                                db.categories.insert(item, function (err) {
+                                db.categories.insertOne(item, function (err) {
                                     if (err) {
                                         console.log("Failed to insert note into database: " + err)
                                     }
@@ -59,7 +59,7 @@
             } else {
                 db.categories
                 .find({ name: categoryName })
-                .count(function (err, count) {
+                .countDocuments(function (err, count) {
                     if (err) {
                         next(err, null);
                     } else {
@@ -71,7 +71,7 @@
                                 notes: []
                             };
                             db.categories
-                            .insert(cat, function (err) {
+                            .insertOne(cat, function (err) {
                                 if (err) {
                                     next(err, null);
                                 } else {
@@ -134,7 +134,7 @@
             } else {
                 db.users
                 .find({ name: user.name.trim() })
-                .count(function (err, count) {
+                .countDocuments(function (err, count) {
                     if (err) {
                         next(err, null);
                     } else {
@@ -142,7 +142,7 @@
                             next("user with name: " + user.name + " already exists.", null);
                         } else {
                             db.users
-                            .insert(user, next);
+                            .insertOne(user, next);
                         }
                     }
                 });

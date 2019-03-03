@@ -1,16 +1,17 @@
 ﻿//database.js
 (function (database) {
     var mongodb = require('mongodb');
-    var mongoUrl = "mongodb://localhost:27017/theBoardDb";
+    var url = "mongodb://localhost:27017";
     var theDb = null;
 
     database.getDb = function (next) {
         if (!theDb) {
             //connect to the database once
-            mongodb.MongoClient.connect(mongoUrl, function (err, db) {
+            mongodb.MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
                 if (err) {
                     next(err, null);
                 } else {
+                    const db = client.db("mydb");
                     theDb = {
                         //creator: "Shawn"
                         db: db
@@ -19,8 +20,9 @@
                     }; 
                     next(null, theDb);
                 }
+                //client && client.close();
             });
-
+            
         } else { 
             next(null, theDb);
         }

@@ -1,0 +1,4 @@
+{
+    // You can use ${workspaceFolder} it will be replaced by workspaceFolder path
+    "flow.pathToFlow": "${workspaceFolder}/node_modules/.bin/flow",
+}
